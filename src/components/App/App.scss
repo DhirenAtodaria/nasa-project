@@ -1,0 +1,58 @@
+@font-face {
+    font-family: Questrial;
+    src: url("../../static/fonts/Questrial-Regular.ttf");
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    overflow: hidden;
+    color: white;
+    font-family: Questrial;
+
+    .mainbackground {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-image: url("../../static/images/black_marble___americas-wallpaper-3840x2160.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        animation: rotating 50s linear infinite;
+    }
+
+    .nasaContainer {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        // position: relative;
+        // height: 200px;
+        // width: 500px;
+
+        .textContainer {
+            width: 0;
+            overflow: hidden;
+
+            h1 {
+                width: 300px;
+            }
+        }
+
+        .nasalogo {
+            // position: absolute;
+            opacity: 1;
+            height: 200px;
+            width: 200px;
+            background-image: url("../../static/images/nasa-2-logo-png-transparent.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+        }
+    }
+}
