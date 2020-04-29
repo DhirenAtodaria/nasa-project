@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { gsap, Power4, Power2, Linear } from "gsap";
+import { gsap, Power4, Power2 } from "gsap";
 import Page2 from "../Page2/Page2";
+import Page3 from "../Page3/Page3";
 import { useDispatch } from "react-redux";
 import { fetchJsonData } from "../../features/dataFetcher/dataFetcherSlice";
 import "./App.scss";
@@ -13,7 +14,8 @@ function App() {
     }, [dispatch]);
 
     const [finished, setFinish] = useState(false);
-    const [pageChange, setPageChange] = useState(false);
+    const [page, setPage] = useState(null);
+    console.log(page);
 
     const backgroundRef = useRef();
     const logoRef = useRef();
@@ -26,64 +28,10 @@ function App() {
     const page1Ref = useRef();
 
     const onClick = useCallback(() => {
-        const pageTransition = gsap.timeline();
-        pageTransition
-            .addLabel("textAni")
-            .to(
-                titlesRef.current,
-                {
-                    x: "-100%",
-                    duration: 0.5,
-                    stagger: 0.1,
-                    ease: Power2.easeInOut,
-                },
-                "textAni"
-            )
-            .to(
-                menusRef.current,
-                {
-                    autoAlpha: 0,
-                    duration: 0.5,
-                    stagger: 0.25,
-                    ease: Power2.easeInOut,
-                },
-                "textAni"
-            )
-            .to(
-                rightRef.current,
-                {
-                    left: 0,
-                    width: "100vw",
-                    duration: 1,
-                    ease: Power2.easeInOut,
-                },
-                "textAni+=1"
-            )
-            .to(
-                leftRef.current,
-                {
-                    width: "0vw",
-                    duration: 1,
-                    ease: Power2.easeInOut,
-                },
-                "textAni+=1"
-            )
-            .to(
-                page1Ref.current,
-                { x: "-100%", duration: 1, ease: Power4.easeInOut },
-                "textAni+=1.5"
-            );
-
-        setPageChange(true);
-    }, [titlesRef, menusRef, rightRef, leftRef, page1Ref]);
+        setPage(1);
+    }, []);
 
     useEffect(() => {
-        gsap.to(backgroundRef.current, {
-            rotation: 360,
-            duration: 75,
-            repeat: -1,
-            ease: Linear,
-        });
         const myTween = gsap.timeline();
         myTween
             .fromTo(
@@ -151,6 +99,107 @@ function App() {
                 setFinish(true);
             });
     }, []);
+
+    useEffect(() => {
+        if (page === 1) {
+            const pageTransition = gsap.timeline();
+            pageTransition
+                .addLabel("textAni")
+                .to(
+                    titlesRef.current,
+                    {
+                        x: "-100%",
+                        duration: 0.5,
+                        stagger: 0.1,
+                        ease: Power2.easeInOut,
+                    },
+                    "textAni"
+                )
+                .to(
+                    menusRef.current,
+                    {
+                        autoAlpha: 0,
+                        duration: 0.5,
+                        stagger: 0.25,
+                        ease: Power2.easeInOut,
+                    },
+                    "textAni"
+                )
+                .to(
+                    rightRef.current,
+                    {
+                        left: 0,
+                        width: "100vw",
+                        duration: 1,
+                        ease: Power2.easeInOut,
+                    },
+                    "textAni+=1"
+                )
+                .to(
+                    leftRef.current,
+                    {
+                        width: "0vw",
+                        duration: 1,
+                        ease: Power2.easeInOut,
+                    },
+                    "textAni+=1"
+                )
+                .to(
+                    page1Ref.current,
+                    { x: "-100%", duration: 1, ease: Power4.easeInOut },
+                    "textAni+=1.5"
+                );
+        } else if (page === 0) {
+            console.log("running Bitches");
+            const pageTransitionRev = gsap.timeline({ delay: 1.5 });
+            pageTransitionRev
+                .to(page1Ref.current, {
+                    x: "0%",
+                    duration: 1,
+                    ease: Power4.easeInOut,
+                })
+                .addLabel("textAni")
+                .to(
+                    leftRef.current,
+                    {
+                        width: "15vw",
+                        duration: 1,
+                        ease: Power2.easeInOut,
+                    },
+                    "textAni"
+                )
+                .to(
+                    rightRef.current,
+                    {
+                        left: "55vw",
+                        width: "45vw",
+                        duration: 1,
+                        ease: Power2.easeInOut,
+                    },
+                    "textAni"
+                )
+                .to(
+                    menusRef.current,
+                    {
+                        autoAlpha: 1,
+                        duration: 0.5,
+                        stagger: 0.25,
+                        ease: Power2.easeInOut,
+                    },
+                    "textAni+=1"
+                )
+                .to(
+                    titlesRef.current,
+                    {
+                        x: "0%",
+                        duration: 0.5,
+                        stagger: 0.1,
+                        ease: Power2.easeInOut,
+                    },
+                    "textAni+=1"
+                );
+        }
+    }, [page]);
 
     return (
         <div className="slidesContainer">
@@ -236,7 +285,12 @@ function App() {
                         </div>
                     </div>
                 </div>
-                <Page2 pageSet={pageChange} />
+                <Page2
+                    reftoBringBack={page1Ref}
+                    page={page}
+                    setPage={setPage}
+                />
+                <Page3 />
             </div>
         </div>
     );
