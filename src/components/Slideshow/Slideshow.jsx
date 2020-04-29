@@ -34,7 +34,7 @@ const Image = styled(a.div)`
     align-items: center;
     background-size: cover;
     background-position: center center;
-    background-color: rgba(19, 3, 3, 0.2);
+    background-color: rgba(19, 3, 3, 0.5);
 `;
 
 export default function Slideshow() {

@@ -1,35 +1,115 @@
 .container2 {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0;
     height: 100vh;
     width: 100vw;
-    font-size: 2.2vw;
+    font-size: 2.5vw;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(
-            0deg,
-            rgba(10, 10, 10, 0.55),
-            rgba(10, 10, 10, 0.55)
-        ),
-        url("../../static/images/trial4.jpg") no-repeat;
+    flex-direction: row;
 
-    background-size: cover;
-    background-position: center;
-
-    .root {
-        margin: 0;
-        padding: 0;
-        width: 80vw;
-        height: 30vh;
-        margin-bottom: 5vh;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        background: rgba(23, 23, 32, 0.9);
-        border-radius: 5px;
+    .bg {
+        position: absolute;
+        z-index: 3;
+        top: -5vh;
+        left: -5vw;
+        height: 110vh;
+        width: 110vw;
+        background: linear-gradient(
+                0deg,
+                rgba(10, 10, 10, 0.55),
+                rgba(10, 10, 10, 0.55)
+            ),
+            url("../../static/images/trial4.jpg") no-repeat;
+        background-size: cover;
+        background-position: center;
     }
 
-    h1 {
-        margin-top: 15vh;
+    .lbord {
+        height: 100%;
+        width: 10%;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.7;
+    }
+
+    .rbord {
+        height: 100%;
+        width: 10%;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.7;
+    }
+
+    .center {
+        z-index: 4;
+        height: 100%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .root {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 30%;
+            margin-bottom: 5%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+
+            border-radius: 5px;
+        }
+
+        .outerh1 {
+            width: 70%;
+            height: 20vh;
+            overflow: hidden;
+
+            h1 {
+                margin-top: 80px;
+                width: 70vw;
+            }
+        }
+        .desc {
+            margin-left: 20px;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            width: 80%;
+
+            .current {
+                width: 50%;
+                overflow: hidden;
+
+                h1 {
+                    font-size: 28px;
+                    margin-bottom: 20px;
+                }
+
+                h2 {
+                    width: 30vw;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    font-size: 22px;
+                }
+            }
+
+            .outerp {
+                width: 65%;
+                overflow: hidden;
+
+                .descCnt {
+                    width: 40vw;
+                    margin-bottom: 40px;
+                }
+            }
+        }
     }
 }
