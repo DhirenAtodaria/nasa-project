@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const APIKey = process.env.REACT_APP_APIKey
+
 export const fetchJsonData = createAsyncThunk(
     "data/fetchJsonData",
     async (thunkAPI) => {
         const response = await axios.get(
-            "https://api.nasa.gov/insight_weather/?api_key=QRQQ5RyTlZUboofOXTDnFjJpGrFc5c1L5blJqvOw&feedtype=json&ver=1.0"
+            `https://api.nasa.gov/insight_weather/?api_key=${APIKey}&feedtype=json&ver=1.0`
         );
         const data = response.data;
         delete data.sol_keys;
@@ -29,7 +31,7 @@ export const fetchJsonApodData = createAsyncThunk(
     "data/fetchJsonApodData",
     async (thunkAPI) => {
         const response = await axios.get(
-            "https://api.nasa.gov/planetary/apod?api_key=QRQQ5RyTlZUboofOXTDnFjJpGrFc5c1L5blJqvOw"
+            `https://api.nasa.gov/planetary/apod?api_key=${APIKey}`
         );
         const data = response.data;
 
