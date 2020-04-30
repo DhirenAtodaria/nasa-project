@@ -7,14 +7,6 @@ const styles = {
     item: { position: "absolute", height: "100%", willChange: "transform" },
 };
 
-/**
- * Calculates a spring-physics driven infinite slider
- *
- * @param {Array} items - display items
- * @param {Function} children - render child
- * @param {number} width - fixed item with
- * @param {number} visible - number of items that muste be visible on screen
- */
 export default function Slider({
     items,
     width = 600,

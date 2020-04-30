@@ -163,6 +163,7 @@
                     .overallContainer {
                         display: flex;
                         align-items: center;
+                        justify-content: center;
                         width: 500px;
 
                         .textContainer {
@@ -171,6 +172,10 @@
 
                             h1 {
                                 width: 300px;
+
+                                @media screen and (max-width: 500px) {
+                                    display: none;
+                                }
                             }
                         }
 
@@ -182,6 +187,11 @@
                             background-repeat: no-repeat;
                             background-position: center;
                             z-index: 1;
+
+                            @media screen and (max-width: 500px) {
+                                height: 100px;
+                                width: 100px;
+                            }
                         }
                     }
                 }

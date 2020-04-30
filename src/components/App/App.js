@@ -1,21 +1,27 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
+import useWindowDimensions from "../useWindowDimensions";
 import { gsap, Power4, Power2 } from "gsap";
 import Page2 from "../Page2/Page2";
 import Page3 from "../Page3/Page3";
 import { useDispatch } from "react-redux";
-import { fetchJsonData } from "../../features/dataFetcher/dataFetcherSlice";
+import {
+    fetchJsonData,
+    fetchJsonApodData,
+} from "../../features/dataFetcher/dataFetcherSlice";
 import "./App.scss";
 
 function App() {
+    const { height, width } = useWindowDimensions();
+    console.log(width);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchJsonData());
+        dispatch(fetchJsonApodData());
     }, [dispatch]);
 
     const [finished, setFinish] = useState(false);
     const [page, setPage] = useState(null);
-    console.log(page);
 
     const backgroundRef = useRef();
     const logoRef = useRef();
@@ -43,24 +49,32 @@ function App() {
                 logoRef.current,
                 { opacity: 0 },
                 { opacity: 1, duration: 0.5 }
-            )
-            .to(textRef.current, {
-                width: "300px",
-                duration: 0.7,
-                ease: Power4.easeIn,
-            })
-            .addLabel("removal")
-            .to(
-                removalRef.current,
-                {
-                    width: "0px",
-                    x: "-50px",
-                    duration: 1,
-                    delay: 2,
-                    ease: Power4.easeIn,
-                },
-                "removal"
-            )
+            );
+        width > 500
+            ? myTween
+                  .to(textRef.current, {
+                      width: "300px",
+                      duration: 0.7,
+                      ease: Power4.easeIn,
+                  })
+                  .addLabel("removal")
+                  .to(
+                      removalRef.current,
+                      {
+                          width: "0px",
+                          x: "-50px",
+                          duration: 1,
+                          delay: 2,
+                          ease: Power4.easeIn,
+                      },
+                      "removal"
+                  )
+            : myTween.to(removalRef.current, {
+                  opacity: 0,
+                  duration: 1,
+                  ease: Power4.easeInOut,
+              });
+        myTween
             .addLabel("borderReveal")
             .fromTo(
                 rightRef.current,
@@ -150,7 +164,6 @@ function App() {
                     "textAni+=1.5"
                 );
         } else if (page === 0) {
-            console.log("running Bitches");
             const pageTransitionRev = gsap.timeline({ delay: 1.5 });
             pageTransitionRev
                 .to(page1Ref.current, {
@@ -285,12 +298,8 @@ function App() {
                         </div>
                     </div>
                 </div>
-                <Page2
-                    reftoBringBack={page1Ref}
-                    page={page}
-                    setPage={setPage}
-                />
-                <Page3 />
+                <Page2 page={page} setPage={setPage} />
+                <Page3 page={page} setPage={setPage} />
             </div>
         </div>
     );

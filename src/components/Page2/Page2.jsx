@@ -39,10 +39,13 @@ export default function Page2(props) {
             const page2TL = gsap.timeline({ delay: 2 });
             page2TL
                 .addLabel("timings")
-                .fromTo(
-                    backRef.current,
-                    { opacity: 0.4 },
-                    { opacity: 1, duration: 1 },
+                .to(
+                    containRef.current,
+                    {
+                        x: "0%",
+                        duration: 1,
+                        ease: Power4.easeInOut,
+                    },
                     "timings"
                 )
                 .fromTo(
@@ -108,12 +111,6 @@ export default function Page2(props) {
                     { x: "0px", width: "100%" },
                     { x: "-15px", width: "0%", duration: 1, stagger: 0.5 },
                     "opacities+=0.5"
-                )
-                .fromTo(
-                    backRef.current,
-                    { opacity: 1 },
-                    { opacity: 0.4, duration: 0.5 },
-                    "opacities+=1"
                 );
         } else if (props.page === 2) {
             const page2TLR = gsap.timeline();
@@ -142,12 +139,6 @@ export default function Page2(props) {
                     { x: "0px", width: "100%" },
                     { x: "-15px", width: "0%", duration: 1, stagger: 0.5 },
                     "opacities+=0.5"
-                )
-                .fromTo(
-                    backRef.current,
-                    { opacity: 1 },
-                    { opacity: 0.4, duration: 0.5 },
-                    "opacities+=1"
                 )
                 .fromTo(
                     containRef.current,
