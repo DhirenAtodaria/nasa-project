@@ -1,0 +1,141 @@
+.container2 {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    font-size: 2vw;
+    display: flex;
+    flex-direction: row;
+
+    .bg {
+        position: absolute;
+        z-index: 3;
+        top: -5vh;
+        left: -5vw;
+        height: 110vh;
+        width: 110vw;
+        background: linear-gradient(
+                0deg,
+                rgba(10, 10, 10, 0.55),
+                rgba(10, 10, 10, 0.55)
+            ),
+            url("../../static/images/trial4.jpg") no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .lbord {
+        height: 100%;
+        width: 10%;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.7;
+    }
+
+    .rbord {
+        height: 100%;
+        width: 10%;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.7;
+    }
+
+    .center {
+        z-index: 4;
+        height: 100%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .root {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 30%;
+            margin-bottom: 5%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+
+            border-radius: 5px;
+        }
+
+        .outerh1 {
+            width: 70%;
+            height: 20vh;
+            overflow: hidden;
+
+            @media screen and (max-width: 500px) {
+                height: unset;
+            }
+
+            h1 {
+                margin-top: 80px;
+                width: 70vw;
+
+                @media screen and (max-width: 900px) {
+                    margin-top: 10px;
+                }
+            }
+        }
+        .desc {
+            margin-left: 20px;
+            font-size: 1.1rem;
+            opacity: 0.6;
+            width: 80%;
+
+            .current {
+                width: 50%;
+                overflow: hidden;
+
+                @media screen and (max-width: 900px) {
+                    width: 100%;
+                }
+
+                h1 {
+                    font-size: 22px;
+                    margin-bottom: 20px;
+
+                    @media screen and (max-width: 900px) {
+                        font-size: 14px;
+                        margin-bottom: 10px;
+                    }
+                }
+
+                h2 {
+                    width: 30vw;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    font-size: 20px;
+
+                    @media screen and (max-width: 900px) {
+                        width: 100%;
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .outerp {
+                width: 65%;
+                overflow: hidden;
+
+                .descCnt {
+                    width: 40vw;
+                    margin-bottom: 40px;
+
+                    @media screen and (max-width: 900px) {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
